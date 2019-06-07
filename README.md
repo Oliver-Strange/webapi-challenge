@@ -26,13 +26,24 @@ Demonstrate your understanding of this Sprint's concepts by answering the follow
 
 - [ ] Mention two parts of Express that you learned about this week.
 
+express.json - is used with server.use(), allows us to parse out json content from the request body.
+routing - allows us to break our app into smaller parts by selecting which request handler function is used based on the url visited and http method used.
+
 - [ ] Describe Middleware?
+
+functions that get request and response objects and can operate on them and either return a response or call the next middleware in the pipeline. Examples would be logging or security.
 
 - [ ] Describe a Resource?
 
+everything (all the data that is used) is a resource, each resource is accessed via unique uri, resources can have multiple representations, management of resources is done via http methods
+
 - [ ] What can the API return to help clients know if a request was successful?
 
+Status codes with messages are returned to let clients know if requests were successful
+
 - [ ] How can we partition our application into sub-applications?
+
+We use express router to break our application up into sub-applications, each set of endpoints can have their own file base on the type of data being manipulated.
 
 ## Project Setup
 
