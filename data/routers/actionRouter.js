@@ -4,19 +4,21 @@ const ActionDb = require("../helpers/actionModel");
 
 const router = express.Router();
 
-// GET actions
+// GET actions - works
 router.get("/", async (req, res) => {
   try {
+    const actions = await ActionDb.get();
+    res.status(200).json(actions);
   } catch (error) {
     console.log(error);
     res.status(500).json({ message: "Sever error" });
   }
 });
 
-// GET actions by Id
+// GET actions by Id - works
 router.get("/:id", async (req, res) => {
   try {
-    const actions = await ActionDb.get(req.query);
+    const actions = await ActionDb.get(req.params.id);
     res.status(200).json(actions);
   } catch (error) {
     console.log(error);
@@ -24,10 +26,10 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-// POST action
+// POST action - works
 // found in projectRouter
 
-// PUT action
+// PUT action - works {"id": #,"project_id": #,"description": "","notes": "","completed": t/f}
 router.put("/:id", async (req, res) => {
   try {
     const action = await ActionDb.update(req.params.id, req.body);
@@ -42,7 +44,7 @@ router.put("/:id", async (req, res) => {
   }
 });
 
-// DELETE action
+// DELETE action - works
 router.delete("/:id", async (req, res) => {
   try {
     const count = await ActionDb.remove(req.params.id);

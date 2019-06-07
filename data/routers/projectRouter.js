@@ -5,10 +5,10 @@ const ActionDb = require("../helpers/actionModel");
 
 const router = express.Router();
 
-// GET projects
+// GET projects - works
 router.get("/", async (req, res) => {
   try {
-    const projects = await ProjectDb.get(req.query);
+    const projects = await ProjectDb.get();
     res.status(200).json(projects);
   } catch (error) {
     console.log(error);
@@ -16,7 +16,7 @@ router.get("/", async (req, res) => {
   }
 });
 
-// GET projects by Id
+// GET projects by Id - works
 router.get("/:id", async (req, res) => {
   try {
     const project = await ProjectDb.get(req.params.id);
@@ -31,7 +31,7 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-// POST project
+// POST project - works {"name":"", "description": ""}
 router.post("/", async (req, res) => {
   try {
     const project = await ProjectDb.insert(req.body);
@@ -42,7 +42,7 @@ router.post("/", async (req, res) => {
   }
 });
 
-// POST action to project by project Id
+// POST action to project by project Id - works {"project_id": #, "description": "", "notes": ""}
 router.post("/:id/actions", async (req, res) => {
   try {
     const action = await ActionDb.insert(req.body);
@@ -53,7 +53,7 @@ router.post("/:id/actions", async (req, res) => {
   }
 });
 
-// PUT project
+// PUT project - works {"name":"", "description": "", "completed":t/f}
 router.put("/:id", async (req, res) => {
   try {
     const project = await ProjectDb.update(req.params.id, req.body);
@@ -68,7 +68,7 @@ router.put("/:id", async (req, res) => {
   }
 });
 
-// DELETE project
+// DELETE project - works
 router.delete("/:id", async (req, res) => {
   try {
     const count = await ProjectDb.remove(req.params.id);
