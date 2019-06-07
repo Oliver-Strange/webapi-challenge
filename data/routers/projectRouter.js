@@ -42,6 +42,17 @@ router.post("/", async (req, res) => {
   }
 });
 
+// POST action to project by project Id
+router.post("/:id/actions", async (req, res) => {
+  try {
+    const action = await ActionDb.insert(req.body);
+    res.status(201).json(action);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "Server error adding action to project" });
+  }
+});
+
 // PUT project
 router.put("/:id", async (req, res) => {
   try {
